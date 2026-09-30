@@ -1,0 +1,152 @@
+@use "variables" as *;
+
+
+// --------------------------------------------------
+// Admin Shell
+// --------------------------------------------------
+
+.admin-shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    background: $body-bg;
+    color: $white;
+}
+
+
+// --------------------------------------------------
+// Sidebar
+// --------------------------------------------------
+
+.admin-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: $surface;
+    border-right: 1px solid $border-color;
+}
+
+.admin-sidebar__brand {
+    margin-bottom: 2.5rem;
+
+    a {
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+}
+
+
+// --------------------------------------------------
+// Navigation
+// --------------------------------------------------
+
+.admin-nav {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.admin-nav__link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: $border-radius;
+    color: rgba($white, 0.7);
+
+    transition:
+        color $transition-base,
+        background $transition-base;
+
+    &:hover {
+        color: $white;
+        background: rgba($primary, 0.1);
+    }
+}
+
+
+// --------------------------------------------------
+// Sidebar Footer
+// --------------------------------------------------
+
+.admin-sidebar__footer {
+    margin-top: auto;
+    display: grid;
+    gap: 1rem;
+}
+
+.admin-user {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background: rgba($white, 0.03);
+
+    strong {
+        font-size: 0.9rem;
+    }
+
+    span {
+        overflow: hidden;
+        color: rgba($white, 0.5);
+        font-size: 0.75rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.admin-logout {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background: transparent;
+    color: rgba($white, 0.7);
+    cursor: pointer;
+
+    transition:
+        color $transition-base,
+        border-color $transition-base,
+        background $transition-base;
+
+    &:hover {
+        border-color: rgba($primary, 0.5);
+        background: rgba($primary, 0.1);
+        color: $white;
+    }
+}
+
+
+// --------------------------------------------------
+// Main Content
+// --------------------------------------------------
+
+.admin-main {
+    min-width: 0;
+    padding: 3rem;
+}
+
+
+// --------------------------------------------------
+// Responsive
+// --------------------------------------------------
+
+@media (max-width: 900px) {
+
+    .admin-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-sidebar {
+        position: static;
+        height: auto;
+    }
+
+    .admin-main {
+        padding: 2rem 1rem;
+    }
+
+}

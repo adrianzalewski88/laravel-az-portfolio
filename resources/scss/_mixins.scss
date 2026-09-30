@@ -1,0 +1,20 @@
+@use "variables" as *;
+
+@mixin gradient-text {
+    background: $gradient-primary;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+@mixin focus-ring {
+    outline: 3px solid rgba($primary, 0.35);
+    outline-offset: 2px;
+}

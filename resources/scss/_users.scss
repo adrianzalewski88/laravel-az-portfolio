@@ -1,0 +1,637 @@
+@use "variables" as *;
+
+// ==================================================
+// Users
+// ==================================================
+
+.user-container {
+    width: min(100%, $container-max-width);
+    margin-inline: auto;
+}
+
+// --------------------------------------------------
+// Header
+// --------------------------------------------------
+
+.user-page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.user-page-header > div {
+    max-width: 750px;
+}
+
+.user-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.75rem;
+    color: $primary;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    &::before {
+        width: 2rem;
+        height: 2px;
+        content: "";
+        background: $gradient-primary;
+        border-radius: 999px;
+    }
+}
+
+.user-page-title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+}
+
+.user-page-description {
+    max-width: 650px;
+    margin: 0;
+    color: rgba($white, 0.5);
+    line-height: 1.7;
+}
+
+.user-header-button {
+    flex-shrink: 0;
+}
+
+// --------------------------------------------------
+// Stats
+// --------------------------------------------------
+
+.user-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.user-stat {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-lg;
+    background:
+        linear-gradient(
+            145deg,
+            rgba($white, 0.045),
+            rgba($white, 0.015)
+        ),
+        $surface;
+}
+
+.user-stat::after {
+    position: absolute;
+    right: -30px;
+    bottom: -50px;
+    width: 130px;
+    height: 130px;
+    content: "";
+    background: radial-gradient(
+        circle,
+        rgba($primary, 0.12),
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.user-stat__icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba($primary, 0.2);
+    border-radius: $border-radius;
+    background: rgba($primary, 0.08);
+    color: $primary;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.user-stat__label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: rgba($white, 0.4);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.user-stat__value {
+    display: block;
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+// --------------------------------------------------
+// Main Panel
+// --------------------------------------------------
+
+.user-panel {
+    padding: 1.75rem;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-lg;
+    background:
+        linear-gradient(
+            145deg,
+            rgba($white, 0.04),
+            rgba($white, 0.012)
+        ),
+        $surface;
+}
+
+.user-panel__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+}
+
+.user-panel__eyebrow {
+    margin: 0 0 0.35rem;
+    color: $primary;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.user-panel__header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.user-panel__header p:last-child {
+    margin: 0.4rem 0 0;
+    color: rgba($white, 0.38);
+    font-size: 0.8rem;
+}
+
+// --------------------------------------------------
+// Search
+// --------------------------------------------------
+
+.user-search {
+    position: relative;
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.user-search input {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 46px;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 1px solid rgba($white, 0.1);
+    border-radius: $border-radius;
+    background: rgba($black, 0.2);
+    color: $white;
+    font: inherit;
+    font-size: 0.85rem;
+
+    transition:
+        border-color $transition-base,
+        background $transition-base,
+        box-shadow $transition-base;
+
+    &::placeholder {
+        color: rgba($white, 0.3);
+    }
+
+    &:focus {
+        border-color: rgba($primary, 0.7);
+        outline: none;
+        background: rgba($primary, 0.035);
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+}
+
+.user-search__icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    z-index: 1;
+    color: rgba($white, 0.35);
+    font-size: 1.15rem;
+    line-height: 1;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+// --------------------------------------------------
+// Alerts
+// --------------------------------------------------
+
+.user-alert {
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 1rem;
+    border-radius: $border-radius;
+    font-size: 0.85rem;
+}
+
+.user-alert--success {
+    border: 1px solid rgba($primary, 0.3);
+    background: rgba($primary, 0.07);
+    color: rgba($white, 0.85);
+}
+
+.user-alert--error {
+    border: 1px solid rgba(255, 107, 129, 0.3);
+    background: rgba(255, 107, 129, 0.07);
+    color: #ff9aaa;
+}
+
+// --------------------------------------------------
+// User List
+// --------------------------------------------------
+
+.user-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.user-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 1.5fr) 180px 130px auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid rgba($white, 0.07);
+    border-radius: $border-radius-lg;
+    background: rgba($white, 0.025);
+
+    transition:
+        border-color $transition-base,
+        background $transition-base,
+        transform $transition-fast;
+
+    &:hover {
+        border-color: rgba($primary, 0.3);
+        background: rgba($primary, 0.025);
+        transform: translateY(-2px);
+    }
+}
+
+// --------------------------------------------------
+// Identity
+// --------------------------------------------------
+
+.user-card__identity {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 1rem;
+}
+
+.user-avatar {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba($primary, 0.25);
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            135deg,
+            rgba($primary, 0.18),
+            rgba($secondary, 0.12)
+        );
+    color: $white;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.user-card__name {
+    min-width: 0;
+}
+
+.user-card__name h3 {
+    overflow: hidden;
+    margin: 0 0 0.25rem;
+    color: $white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-card__name p {
+    overflow: hidden;
+    margin: 0;
+    color: rgba($white, 0.4);
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// --------------------------------------------------
+// Role
+// --------------------------------------------------
+
+.user-role {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba($white, 0.1);
+    border-radius: 999px;
+    background: rgba($white, 0.035);
+    color: rgba($white, 0.5);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.user-role--admin {
+    border-color: rgba($primary, 0.25);
+    background: rgba($primary, 0.08);
+    color: rgba($white, 0.85);
+}
+
+// --------------------------------------------------
+// Project Count
+// --------------------------------------------------
+
+.user-card__projects {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.user-card__projects strong {
+    color: $white;
+    font-size: 1.1rem;
+}
+
+.user-card__projects span {
+    color: rgba($white, 0.35);
+    font-size: 0.7rem;
+}
+
+// --------------------------------------------------
+// Actions
+// --------------------------------------------------
+
+.user-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.user-card__edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid rgba($primary, 0.2);
+    border-radius: $border-radius;
+    background: rgba($primary, 0.06);
+    color: rgba($white, 0.8);
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    transition:
+        border-color $transition-base,
+        background $transition-base,
+        color $transition-base;
+
+    &:hover {
+        border-color: rgba($primary, 0.5);
+        background: rgba($primary, 0.12);
+        color: $white;
+    }
+}
+
+.user-card__actions .project-delete {
+    min-height: 40px;
+    padding: 0.55rem 0.85rem;
+}
+
+.user-current {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba($white, 0.07);
+    border-radius: $border-radius;
+    color: rgba($white, 0.3);
+    font-size: 0.7rem;
+}
+
+// --------------------------------------------------
+// Empty State
+// --------------------------------------------------
+
+.user-empty {
+    display: grid;
+    place-items: center;
+    min-height: 360px;
+    padding: 3rem;
+    border: 1px dashed rgba($white, 0.1);
+    border-radius: $border-radius-lg;
+    text-align: center;
+}
+
+.user-empty__icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba($primary, 0.25);
+    border-radius: 50%;
+    background: rgba($primary, 0.07);
+    color: $primary;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.user-empty h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+.user-empty p {
+    max-width: 480px;
+    margin: 0 0 1.5rem;
+    color: rgba($white, 0.4);
+    line-height: 1.6;
+}
+
+// --------------------------------------------------
+// Pagination
+// --------------------------------------------------
+
+.user-pagination {
+    margin-top: 1.5rem;
+}
+
+// --------------------------------------------------
+// Responsive
+// --------------------------------------------------
+
+@media (max-width: 1050px) {
+    .user-card {
+        grid-template-columns: minmax(220px, 1.5fr) 150px auto;
+    }
+
+    .user-card__projects {
+        display: none;
+    }
+}
+
+@media (max-width: 850px) {
+    .user-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .user-panel__header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .user-search {
+        width: 100%;
+    }
+
+    .user-card {
+        grid-template-columns: 1fr auto;
+    }
+
+    .user-card__role {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .user-card__actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba($white, 0.06);
+    }
+}
+
+@media (max-width: 600px) {
+    .user-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .user-panel {
+        padding: 1.25rem;
+    }
+
+    .user-card {
+        grid-template-columns: 1fr;
+    }
+
+    .user-card__role {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+
+
+
+// --------------------------------------------------
+// Access Panel
+// --------------------------------------------------
+
+.user-access-panel {
+    overflow: hidden;
+}
+
+.user-access-panel__badge {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba($primary, 0.25);
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            135deg,
+            rgba($primary, 0.14),
+            rgba($secondary, 0.1)
+        );
+    color: $primary;
+    font-size: 1rem;
+}
+
+.user-access-role {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 0.9rem;
+    border: 1px solid rgba($primary, 0.15);
+    border-radius: $border-radius;
+    background: rgba($primary, 0.05);
+}
+
+.user-access-role__indicator {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $primary;
+    box-shadow: 0 0 12px rgba($primary, 0.7);
+}
+
+.user-access-role strong,
+.user-access-role span {
+    display: block;
+}
+
+.user-access-role strong {
+    margin-bottom: 0.2rem;
+    color: rgba($white, 0.9);
+    font-size: 0.8rem;
+}
+
+.user-access-role span {
+    color: rgba($white, 0.4);
+    font-size: 0.7rem;
+}
+
+.user-security-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
+    padding: 0.85rem;
+    border: 1px solid rgba($white, 0.06);
+    border-radius: $border-radius;
+    background: rgba($white, 0.02);
+}
+
+.user-security-note > span {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+}
+
+.user-security-note p {
+    margin: 0;
+    color: rgba($white, 0.38);
+    font-size: 0.7rem;
+    line-height: 1.6;
+}

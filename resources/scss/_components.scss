@@ -1,0 +1,50 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.75rem 1.25rem;
+
+    border: 0;
+    border-radius: $border-radius;
+
+    background: $gradient-primary;
+    color: $white;
+
+    cursor: pointer;
+
+    transition:
+        transform $transition-base,
+        box-shadow $transition-base;
+
+    &:hover {
+        color: $white;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+    }
+}
+
+.card {
+    border-radius: $border-radius-lg;
+
+    @include glass-effect;
+
+    transition:
+        transform $transition-base,
+        border-color $transition-base,
+        box-shadow $transition-base;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: rgba($primary, 0.5);
+        box-shadow: $shadow-lg;
+    }
+}
+
+.gradient-text {
+    @include gradient-text;
+}

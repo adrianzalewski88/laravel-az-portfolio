@@ -34,14 +34,33 @@ jobs:
 
             cd /var/www/html/portfolio-source.adrian-zalewski.com/public_html
 
+            echo "Fetching latest main branch..."
             git fetch origin main
+
+            echo "Resetting production code..."
             git reset --hard origin/main
 
-            composer install --no-dev --optimize-autoloader
+            echo "Installing production dependencies..."
+            composer install \
+              --no-dev \
+              --prefer-dist \
+              --optimize-autoloader
 
+            echo "Running database migrations..."
             php artisan migrate --force
 
+            echo "Ensuring Passport encryption keys exist..."
+            if [ ! -f storage/oauth-private.key ] || [ ! -f storage/oauth-public.key ]; then
+              php artisan passport:keys
+            fi
+
+            echo "Clearing application caches..."
+            php artisan optimize:clear
+
+            echo "Building production caches..."
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+
+            echo "Laravel deployment completed."
           EOF
