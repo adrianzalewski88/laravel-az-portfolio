@@ -6,6 +6,7 @@ services:
     container_name: az-portfolio-source-app
     ports:
       - "8000:80"
+      - "5174:5174"
     volumes:
       - .:/var/www/html
     depends_on:
