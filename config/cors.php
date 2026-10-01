@@ -19,6 +19,7 @@ return [
 
     'allowed_origins' => [
         'http://localhost:5173',
+        'https://portfolio.adrian-zalewski.com',
     ],
 
     'allowed_origins_patterns' => [],

@@ -72,6 +72,9 @@ jobs:
             echo "Fixing Laravel writable directories..."
             sudo /usr/local/sbin/azdeploy-laravel-permissions
 
+            echo "Ensuring Laravel storage link exists..."
+            php artisan storage:link
+            
             echo "Clearing application caches..."
             php artisan optimize:clear
 
