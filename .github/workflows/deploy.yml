@@ -17,6 +17,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
       - name: Configure SSH
         run: |
           install -m 700 -d ~/.ssh
@@ -54,6 +69,9 @@ jobs:
               php artisan passport:keys
             fi
 
+            echo "Fixing Laravel writable directories..."
+            sudo /usr/local/sbin/azdeploy-laravel-permissions
+
             echo "Clearing application caches..."
             php artisan optimize:clear
 
@@ -63,4 +81,20 @@ jobs:
             php artisan view:cache
 
             echo "Laravel deployment completed."
+          EOF
+
+      - name: Deploy Vite assets
+        run: |
+          rsync -az --delete \
+            public/build/ \
+            "${{ secrets.LINODE_USER }}@${{ secrets.LINODE_HOST }}:/var/www/html/portfolio-source.adrian-zalewski.com/public_html/public/build/"
+
+      - name: Verify Vite manifest
+        run: |
+          ssh "${{ secrets.LINODE_USER }}@${{ secrets.LINODE_HOST }}" << 'EOF'
+            set -e
+
+            test -f /var/www/html/portfolio-source.adrian-zalewski.com/public_html/public/build/manifest.json
+
+            echo "Vite manifest verified."
           EOF
