@@ -237,7 +237,7 @@ new #[Layout('layouts.public')] class extends Component
                     rel="noopener noreferrer"
                     class="public-hero__secondary"
                 >
-                    LlinkedIn
+                    LinkedIn
                 </a>
 
                 <a
