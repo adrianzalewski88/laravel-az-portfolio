@@ -232,6 +232,15 @@ new #[Layout('layouts.public')] class extends Component
                 </a>
 
                 <a
+                    href="https://www.linkedin.com/in/adrian-zalewski-1988-fa/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="public-hero__secondary"
+                >
+                    LlinkedIn
+                </a>
+
+                <a
                     href="https://github.com/adrianzalewski88"
                     target="_blank"
                     rel="noopener noreferrer"
