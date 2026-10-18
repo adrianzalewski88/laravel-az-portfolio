@@ -133,22 +133,22 @@ new #[Layout('layouts.public')] class extends Component
 
         $projects = $projectsQuery->paginate($this->perPage);
 
+        
+        $publishedProjects = fn (Builder $query) =>
+            $query
+                ->where('status', 'published')
+                ->whereNotNull('published_at')
+                ->where('published_at', '<=', now());
+
         $categories = Category::query()
+            ->whereHas('projects', $publishedProjects)
             ->withCount([
-                'projects' => fn (Builder $query) =>
-                    $query
-                        ->where('status', 'published')
-                        ->whereNotNull('published_at')
-                        ->where(
-                            'published_at',
-                            '<=',
-                            now()
-                        ),
+                'projects' => $publishedProjects,
             ])
-            ->having('projects_count', '>', 0)
             ->orderByDesc('projects_count')
             ->orderBy('name')
             ->get();
+
 
         $publishedCount = Project::query()
             ->where('status', 'published')

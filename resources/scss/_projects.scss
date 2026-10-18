@@ -514,7 +514,7 @@
 .project-search__icon {
     position: absolute;
     top: 50%;
-    left: 1rem;
+    left: 2rem;
     color: rgba($white, 0.45);
     font-size: 1.2rem;
     pointer-events: none;
@@ -1085,5 +1085,300 @@ select.project-input {
     .project-library-card__image img,
     .project-progress > span {
         transition: none;
+    }
+}
+
+
+// ===============================================
+// Project Library Pagination
+// ===============================================
+
+.project-library-pagination {
+    --pagination-accent: #{$primary};
+
+    width: 100%;
+    min-width: 0;
+    color: rgba($white, 0.7);
+
+    // Livewire / Laravel pagination navigation
+    nav[role="navigation"] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        min-width: 0;
+    }
+
+    // -------------------------------------------
+    // Shared button styling
+    // -------------------------------------------
+
+    button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        min-height: 42px;
+        padding: 0.65rem 0.9rem;
+        border: 1px solid rgba($white, 0.09);
+        border-radius: 0.65rem;
+        background: rgba($white, 0.035);
+        color: rgba($white, 0.78);
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 650;
+        line-height: 1.25;
+        white-space: nowrap;
+        cursor: pointer;
+
+        transition:
+            color $transition-fast,
+            background $transition-fast,
+            border-color $transition-fast,
+            box-shadow $transition-fast,
+            transform $transition-fast;
+
+        &:hover:not(:disabled) {
+            border-color: rgba($primary, 0.45);
+            background: rgba($primary, 0.1);
+            color: $white;
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.97);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $primary;
+            outline-offset: 3px;
+            z-index: 2;
+        }
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+    }
+
+    // -------------------------------------------
+    // Results summary
+    // -------------------------------------------
+
+    nav p {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.3rem;
+        margin: 0;
+        color: rgba($white, 0.48);
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    nav p .font-medium {
+        color: $white;
+        font-weight: 750;
+        font-variant-numeric: tabular-nums;
+    }
+
+    // -------------------------------------------
+    // Desktop pagination group
+    // -------------------------------------------
+
+    nav .relative.z-0.inline-flex {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        max-width: 100%;
+        padding: 0.3rem;
+        border: 1px solid rgba($white, 0.075);
+        border-radius: 0.9rem;
+        background:
+            linear-gradient(
+                145deg,
+                rgba($white, 0.035),
+                rgba($white, 0.008)
+            ),
+            $surface;
+        box-shadow: $shadow-sm;
+    }
+
+    nav .relative.z-0.inline-flex > span {
+        display: inline-flex;
+        min-width: 0;
+    }
+
+    // Page number buttons and their wrappers
+    nav .relative.z-0.inline-flex button,
+    nav .relative.z-0.inline-flex [aria-current="page"] > span,
+    nav .relative.z-0.inline-flex [aria-disabled="true"] > span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid transparent;
+        border-radius: 0.6rem;
+        background: transparent;
+        color: rgba($white, 0.68);
+        font-size: 0.8rem;
+        font-weight: 700;
+        line-height: 1;
+        box-shadow: none;
+    }
+
+    // Current page
+    nav .relative.z-0.inline-flex [aria-current="page"] > span {
+        border-color: rgba($primary, 0.35);
+        background: linear-gradient(
+            135deg,
+            rgba($primary, 0.24),
+            rgba($secondary, 0.2)
+        );
+        color: $white;
+        box-shadow: inset 0 0 0 1px rgba($primary, 0.08);
+    }
+
+    // Hover state for page numbers and arrows
+    nav .relative.z-0.inline-flex button:hover:not(:disabled) {
+        border-color: rgba($white, 0.09);
+        background: rgba($white, 0.075);
+        color: $white;
+    }
+
+    // Previous / next arrow buttons
+    nav .relative.z-0.inline-flex button[aria-label^="Next"],
+    nav .relative.z-0.inline-flex button[aria-label^="&amp;raquo;"],
+    nav .relative.z-0.inline-flex button[aria-label^="&laquo;"],
+    nav .relative.z-0.inline-flex button[aria-label^="Go to page"] {
+        font-variant-numeric: tabular-nums;
+    }
+
+    nav .relative.z-0.inline-flex button[aria-label^="Next"],
+    nav .relative.z-0.inline-flex button[aria-label^="&amp;raquo;"],
+    nav .relative.z-0.inline-flex button[aria-label^="&laquo;"] {
+        padding-inline: 0.6rem;
+    }
+
+    nav .relative.z-0.inline-flex svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    // Disabled previous / next arrows
+    nav .relative.z-0.inline-flex [aria-disabled="true"] > span {
+        color: rgba($white, 0.22);
+        opacity: 0.7;
+    }
+
+    // -------------------------------------------
+    // Mobile previous / next controls
+    // -------------------------------------------
+
+    nav > .flex.justify-between.flex-1.sm\:hidden {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        width: 100%;
+        min-width: 0;
+    }
+
+    nav > .flex.justify-between.flex-1.sm\:hidden > span {
+        display: inline-flex;
+        min-width: 0;
+    }
+
+    nav > .flex.justify-between.flex-1.sm\:hidden button {
+        min-height: 42px;
+        padding: 0.7rem 1rem;
+        border: 1px solid rgba($white, 0.1);
+        border-radius: 0.7rem;
+        background: $surface;
+        color: rgba($white, 0.85);
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+    nav > .flex.justify-between.flex-1.sm\:hidden > span > span {
+        padding: 0.7rem 1rem;
+        border: 1px solid rgba($white, 0.1);
+        border-radius: 0.7rem;
+        background: $surface;
+        color: rgba($white, 0.85);
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+
+    nav > .flex.justify-between.flex-1.sm\:hidden button {
+        max-width: 100%;
+    }
+
+    nav > .flex.justify-between.flex-1.sm\:hidden button:hover:not(:disabled) {
+        border-color: rgba($primary, 0.4);
+        background: rgba($primary, 0.1);
+        color: $white;
+    }
+
+    nav > .flex.justify-between.flex-1.sm\:hidden > span > span {
+        color: rgba($white, 0.3);
+        cursor: not-allowed;
+    }
+
+    // -------------------------------------------
+    // Tablet and smaller desktop screens
+    // -------------------------------------------
+
+    @media (max-width: 767px) {
+        nav[role="navigation"] {
+            gap: 1rem;
+        }
+
+        nav .relative.z-0.inline-flex {
+            gap: 0.2rem;
+        }
+
+        nav .relative.z-0.inline-flex button,
+        nav .relative.z-0.inline-flex [aria-current="page"] > span,
+        nav .relative.z-0.inline-flex [aria-disabled="true"] > span {
+            min-width: 34px;
+            min-height: 36px;
+            padding: 0.5rem;
+        }
+    }
+
+    // -------------------------------------------
+    // Narrow mobile screens
+    // -------------------------------------------
+
+    @media (max-width: 420px) {
+        nav > .flex.justify-between.flex-1.sm\:hidden {
+            gap: 0.5rem;
+        }
+
+        nav > .flex.justify-between.flex-1.sm\:hidden > span {
+            flex: 1 1 0;
+        }
+
+        nav > .flex.justify-between.flex-1.sm\:hidden button,
+        nav > .flex.justify-between.flex-1.sm\:hidden > span > span {
+            justify-content: center;
+            width: 100%;
+            padding-inline: 0.55rem;
+            font-size: 0.75rem;
+        }
+    }
+
+    // Respect reduced-motion preferences
+    @media (prefers-reduced-motion: reduce) {
+        button {
+            transition: none;
+        }
+
+        button:active:not(:disabled) {
+            transform: none;
+        }
     }
 }
