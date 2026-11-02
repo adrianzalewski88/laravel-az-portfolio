@@ -98,7 +98,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Dashboard | AZ Portfolio')
+@section('title', 'Dashboard | Laravel - AZ Portfolio')
 
 @section('content')
 
