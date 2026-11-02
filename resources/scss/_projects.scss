@@ -1093,7 +1093,8 @@ select.project-input {
 // Project Library Pagination
 // ===============================================
 
-.project-library-pagination {
+.project-library-pagination,
+.public-pagination {
     --pagination-accent: #{$primary};
 
     width: 100%;
